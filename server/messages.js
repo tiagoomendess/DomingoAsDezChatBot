@@ -64,10 +64,10 @@ function MessegesRouter() {
             next();
         });
 
-        route.route('/dialogflow')
+        router.route('/dialogflow')
 
             .get(function(req, res, next){
-                
+
                 console.log("POST /messages/dialogflow");
                 res.status(200).send("ok");
 
