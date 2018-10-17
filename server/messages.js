@@ -42,6 +42,12 @@ function MessegesRouter() {
         .post(function (req, res, next) {
             console.log('POST /messages/received');
             console.log(req.body);
+
+            for(var i = 0; i < req.body.entry.lenght; i++) {
+                
+                console.log(req.body.entry[i].messaging);
+            }
+
             res.status(200);
             res.send("Ok");
             next();
