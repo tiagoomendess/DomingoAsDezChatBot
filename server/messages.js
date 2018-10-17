@@ -36,12 +36,12 @@ function MessegesRouter() {
                     res.sendStatus(403);
                 }
             }
-            res.status(200);
-            res.send("Ok");
+
         })
 
         .post(function (req, res, next) {
             console.log('POST /messages/received');
+            console.log(req.body);
             res.status(200);
             res.send("Ok");
             next();
