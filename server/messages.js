@@ -51,7 +51,7 @@ function MessegesRouter() {
                 //let message = req.body.entry[i].messaging.message.text;
 
             
-                console.log(req.body.entry[i].messaging.message);
+                console.log(req.body.entry[i].message);
                 //console.log("[" + sender_id + "] @(" + timestamp + ") -> " + message);
             }
 
