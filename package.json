@@ -1,0 +1,30 @@
+{
+  "name": "domingoasdezchatbot",
+  "version": "1.0.0",
+  "description": "Bot para o Chat da página Domingo às Dez",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "http": "0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiagoomendess/DomingoAsDezChatBot.git"
+  },
+  "keywords": [
+    "domingoasdez",
+    "\u001b[Dchatbot"
+  ],
+  "author": "Tiago Mendes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiagoomendess/DomingoAsDezChatBot/issues"
+  },
+  "homepage": "https://github.com/tiagoomendess/DomingoAsDezChatBot#readme"
+}
