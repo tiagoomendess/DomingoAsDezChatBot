@@ -64,6 +64,22 @@ function MessegesRouter() {
             next();
         });
 
+        route.route('/dialogflow')
+
+            .get(function(req, res, next){
+                
+                console.log("POST /messages/dialogflow");
+                res.status(200).send("ok");
+
+            })
+            .post(function(req, res, next){
+
+                console.log("GET /messages/dialogflow");
+                console.log(req.body);
+                res.status(200).send();
+
+            });
+
     return router;
 }
 
