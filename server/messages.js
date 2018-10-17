@@ -41,16 +41,18 @@ function MessegesRouter() {
 
         .post(function (req, res, next) {
             console.log('POST /messages/received');
-            //console.log(req.body.entry.length);
 
-            for(var i = 0; i < req.body.entry.length; i++) {
-                
-                console.log(req.body.entry[i]);
-                //let sender_id = req.body.entry[i].messaging.sender.id;
-                //let timestamp = req.body.entry[i].messaging.timestamp;
-                //let message = req.body.entry[i].messaging.message.text;
+            for (var i = 0; i < req.body.entry.length; i++) {
 
-                //console.log("[" + sender_id + "] @(" + timestamp + ") -> " + message);
+                for (var j = 0; j < req.body.entry[i].messaging.length; j++) {
+
+                    let sender_id = req.body.entry[i].messaging[j].sender.id;
+                    let timestamp = req.body.entry[i].messaging[j].timestamp;
+                    let message = req.body.entry[i].messaging[j].message.text;
+                    console.log("[" + sender_id + "] @(" + timestamp + ") -> " + message);
+
+                }
+
             }
 
             res.status(200);
