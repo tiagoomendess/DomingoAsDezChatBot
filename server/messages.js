@@ -44,6 +44,8 @@ function MessegesRouter() {
 
             for (var i = 0; i < req.body.entry.length; i++) {
 
+                console.log("-----------\n");
+
                 for (var j = 0; j < req.body.entry[i].messaging.length; j++) {
 
                     let sender_id = req.body.entry[i].messaging[j].sender.id;
@@ -52,6 +54,8 @@ function MessegesRouter() {
                     console.log("[" + sender_id + "] @(" + timestamp + ") -> " + message);
 
                 }
+
+                console.log("-----------\n");
 
             }
 
