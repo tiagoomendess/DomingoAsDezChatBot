@@ -9,10 +9,17 @@ function MessegesRouter() {
   router.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 
   router.route('/received')
+
+    .get(function(req, res, next) {
+        console.log('GET /messages/received');
+        res.status(200);
+        res.send("Ok");
+    })
+    
     .post(function (req, res, next) {
-      console.log('Message Received!');
-      res.status(200);
-      res.send("Ok");
+        console.log('POST /messages/received');
+        res.status(200);
+        res.send("Ok");
       next();
     });
 
