@@ -75,12 +75,7 @@ function addSender({sender_id, timestamp, text}) {
     if(!sender) {
         senders.push({
             sender_id : sender_id,
-            messages : [
-                {
-                    timestamp: timestamp,
-                    text: text
-                }
-            ]
+            messages : []
         });
 
         return true;
