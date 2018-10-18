@@ -52,12 +52,12 @@ function BotService() {
             method: 'POST',
             headers: headers,
             data: {
-                messaging_type : message_type,
-                recipient:{
-                    id: sender_id
+                "messaging_type": message_type,
+                "recipient": {
+                    "id": sender_id
                 },
-                message:{
-                    text: text
+                "message": {
+                    "text": text
                 }
             }
         }
