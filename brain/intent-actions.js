@@ -1,5 +1,5 @@
 var request = require('request');
-var Bot = require('../bot');
+const Bot = require('../bot');
 
 function tellScoreLiveMatch(sender) {
 
