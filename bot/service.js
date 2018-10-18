@@ -50,8 +50,9 @@ function BotService() {
         var options = {
             url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN,
             method: 'POST',
+            json: true,
             headers: headers,
-            data: {
+            body: {
                 "messaging_type": message_type,
                 "recipient": {
                     "id": sender_id
