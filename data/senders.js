@@ -95,6 +95,10 @@ function replaceOldest(sender, {timestamp, text}) {
         text: text
     }
 
+    sender.messages.sort(function(a,b) {
+        return b.timestamp - a.timestamp;
+    });
+
     return true;
 
 }
