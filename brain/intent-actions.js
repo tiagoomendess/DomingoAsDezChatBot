@@ -12,7 +12,9 @@ function tellScoreLiveMatch(sender) {
         
         if (response.statusCode === 200) {
 
-            if (body.data.length === 0) {
+            let matches = JSON.parse(body);
+
+            if (matches.data.length === 0) {
                 console.log("\t[BRAIN]: No live games, doing nothing!");
                 setTimeout(function() {
                     Bot.SendAction(sender.sender_id, 'mark_seen');
