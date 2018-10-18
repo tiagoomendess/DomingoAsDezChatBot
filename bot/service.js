@@ -45,17 +45,19 @@ function BotService() {
             'Content-Type': 'application/json'
         }
 
+        console.log('https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN);
+
         var options = {
             url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN,
             method: 'POST',
             headers: headers,
             data: {
-                "messaging_type": message_type,
-                "recipient":{
-                    "id": sender_id
+                messaging_type : message_type,
+                recipient:{
+                    id: sender_id
                 },
-                "message":{
-                    "text": text
+                message:{
+                    text: text
                 }
             }
         }
