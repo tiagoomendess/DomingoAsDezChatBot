@@ -39,22 +39,29 @@ function BotService() {
 
         let timestamp = new Date().getTime();
         Senders.saveReply({ sender_id, timestamp, text });
-        
-        let face_message = {
-            messaging_type: message_type,
-            recipient: {
-                id: sender_id
-            },
-            message: {
-                text: text
+
+        var options = {
+            url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN, face_message,
+            method: 'POST',
+            data: {
+                "messaging_type": message_type,
+                "recipient":{
+                    "id": sender_id
+                },
+                "message":{
+                    "text": text
+                }
             }
         }
 
-        request.post('https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN, face_message, function(response){
-            console.log("Facebook Response ------------");
-            console.log(response);
-            console.log("End of Facebook Response ------------");
-        });
+        request(options, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // Print out the response body
+                console.log(body)
+            } else {
+                console.log(error);
+            }
+        })
 
     }
 
@@ -65,13 +72,13 @@ function BotService() {
     function SendAction(sender_id, action) {
 
         let face_message = {
-            recipient : {
+            recipient: {
                 id: sender_id
-              },
+            },
             sender_action: action
         }
 
-        request.post('https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN, face_message, function(response) {
+        request.post('https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN, face_message, function (response) {
             console.log("Facebook Response ------------");
             console.log(response);
             console.log("End of Facebook Response ------------");
