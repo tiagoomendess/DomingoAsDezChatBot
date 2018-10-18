@@ -21,7 +21,7 @@ function processIntent(intent, sender) {
             break;
 
         default:
-            console.log("\t[BRAIN]: Don't know what user Wants. Not doing anything!");
+            console.log("\t[BRAIN]: Don't know what user Wants. Doing nothing!");
             break;
     }
 

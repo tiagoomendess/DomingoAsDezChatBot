@@ -10,10 +10,14 @@ function tellScoreLiveMatch(sender) {
 
     request(options, function (error, response, body) {
         
-        if (response.statusCode === 200) {
+        if (response.statusCode === 200 && body.data !== undefined) {
 
-            console.log("---");
-            console.log(body);
+            if (body.data.length === 0) {
+                console.log("\t[BRAIN]: No live games, doing nothing!");
+                setTimeout(function() {
+                    Bot.SendAction(sender.sender_id, 'mark_seen');
+                }, 5000);
+            }
 
         }
 
