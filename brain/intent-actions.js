@@ -1,5 +1,5 @@
-var request = require('request');
 const Bot = require('../bot');
+var request = require('request');
 
 function tellScoreLiveMatch(sender) {
 
@@ -16,9 +16,9 @@ function tellScoreLiveMatch(sender) {
 
             if (matches.data.length === 0) {
                 console.log("\t[BRAIN]: No live games, doing nothing!");
-                setTimeout(function() {
-                    Bot.SendAction(sender.sender_id, 'mark_seen');
-                }, 5000);
+
+                Bot.SendAction(sender.sender_id, 'mark_seen');
+
             } else {
                 console.log("\t[BRAIN]: There are games now!");
             }
