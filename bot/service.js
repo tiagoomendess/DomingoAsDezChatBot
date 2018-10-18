@@ -57,8 +57,10 @@ function BotService() {
         request(options, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 // Print out the response body
-                console.log(body)
+                console.log("No error");
+                console.log(body);
             } else {
+                console.log("Erro no pedido");
                 console.log(error);
             }
         })
@@ -70,19 +72,6 @@ function BotService() {
     * @param {string} action <mark_seen|typing_on|typing_off>
     */
     function SendAction(sender_id, action) {
-
-        let face_message = {
-            recipient: {
-                id: sender_id
-            },
-            sender_action: action
-        }
-
-        request.post('https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN, face_message, function (response) {
-            console.log("Facebook Response ------------");
-            console.log(response);
-            console.log("End of Facebook Response ------------");
-        });
 
     }
 
