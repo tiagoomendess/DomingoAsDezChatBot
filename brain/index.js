@@ -1,11 +1,11 @@
-const Bot = require('../bot');
+var actions = require('./intent-actions');
 
 function processIntent(intent, sender) {
 
     switch (intent) {
         case "tell_score_live_match":
             console.log("\t[BRAIN]: User wants to report a live match score!");
-            
+            actions.tellScoreLiveMatch(sender);
             break;
 
         case "tell_score_finished_match":
