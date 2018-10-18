@@ -13,6 +13,12 @@ let senders = [
                 text: "Mensagem"
             },
 
+        ],
+        replies: [
+            {
+                timestamp: 111112222,
+                text: "resposta"
+            }
         ]
     },
 ]
@@ -29,7 +35,7 @@ function saveMessage({sender_id, timestamp, text}) {
     }
 
     if (sender.messages.length >= MAX_LINES_PER_SENDER) {
-        return replaceOldest(sender, {timestamp, text});
+        return replaceOldestMessage(sender, {timestamp, text});
     } else {
 
         sender.messages.push({
@@ -46,6 +52,28 @@ function saveMessage({sender_id, timestamp, text}) {
 
 }
 
+function saveReply({sender_id, timestamp, text}) {
+
+    let sender = getSender(sender_id);
+
+    if (sender.replies.length >= MAX_LINES_PER_SENDER) {
+        return replaceOldestReply(sender, {timestamp, text});
+    } else {
+
+        sender.replies.push({
+            timestamp: timestamp,
+            text: text
+        });
+
+        sender.replies.sort(function(a,b) {
+            return b.timestamp - a.timestamp;
+        });
+
+        return true;
+    }
+
+}
+
 function getMessages(sender_id) {
 
     let sender = getSender(sender_id);
@@ -54,6 +82,17 @@ function getMessages(sender_id) {
         return undefined;
     else
         return sender.messages;
+
+}
+
+function getReplies(sender_id) {
+
+    let sender = getSender(sender_id);
+
+    if (!sender)
+        return undefined;
+    else
+        return sender.replies;
 
 }
 
@@ -75,7 +114,8 @@ function addSender({sender_id, timestamp, text}) {
     if(!sender) {
         senders.push({
             sender_id : sender_id,
-            messages : []
+            messages : [],
+            replies = []
         });
 
         return true;
@@ -84,7 +124,7 @@ function addSender({sender_id, timestamp, text}) {
     return false;
 }
 
-function replaceOldest(sender, {timestamp, text}) {
+function replaceOldestMessage(sender, {timestamp, text}) {
 
     sender.messages.sort(function(a,b) {
         return b.timestamp - a.timestamp;
@@ -103,4 +143,23 @@ function replaceOldest(sender, {timestamp, text}) {
 
 }
 
-module.exports = { saveMessage, getMessages }
+function replaceOldestReply(sender, {timestamp, text}) {
+
+    sender.replies.sort(function(a,b) {
+        return b.timestamp - a.timestamp;
+    });
+
+    sender.replies[MAX_LINES_PER_SENDER - 1] = {
+        timestamp: timestamp,
+        text: text
+    }
+
+    sender.replies.sort(function(a,b) {
+        return b.timestamp - a.timestamp;
+    });
+
+    return true;
+
+}
+
+module.exports = { saveMessage, saveReply, getMessages, getReplies, MAX_LINES_PER_SENDER }

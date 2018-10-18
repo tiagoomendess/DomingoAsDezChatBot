@@ -10,10 +10,13 @@ function BotService() {
     //https://domingoasdez.com/api/games/live
     function ProcessMessage(message) {
         
-        console.log("Message Received! Processing...");
+        console.log("Message Received! Processing...\n");
         Senders.saveMessage(message);
-        let context = Senders.getMessages(message.sender_id);
-        console.log(context);
+        let received = Senders.getMessages(message.sender_id);
+        console.log(received);
+        console.log("-----");
+        let sent = Senders.getReplies(message.sender_id);
+        console.log(sent);
 
     }
 
