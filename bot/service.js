@@ -1,3 +1,5 @@
+const Senders = require("../data/senders");
+
 function BotService() {
 
     let service = {
@@ -9,7 +11,9 @@ function BotService() {
     function ProcessMessage(message) {
         
         console.log("Message Received! Processing...");
-        console.log(message);
+        Senders.saveMessage(message);
+        let context = Senders.getMessages(message.sender_id);
+        console.log(JSON.parse(context));
 
     }
 
