@@ -13,7 +13,7 @@ function BotService() {
         console.log("Message Received! Processing...");
         Senders.saveMessage(message);
         let context = Senders.getMessages(message.sender_id);
-        console.log(JSON.parse(context));
+        console.log(context);
 
     }
 
