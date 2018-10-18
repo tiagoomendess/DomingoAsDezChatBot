@@ -31,7 +31,7 @@ function saveMessage({sender_id, timestamp, text}) {
     if (sender.messages.length >= MAX_LINES_PER_SENDER) {
         return replaceOldest(sender, {timestamp, text});
     } else {
-        
+
         sender.messages.push({
             timestamp: timestamp,
             text: text
@@ -61,7 +61,7 @@ function getSender(sender_id) {
     
     for(let i = 0; i < senders.length; i++) {
 
-        if(senders[i].sender_id = sender_id)
+        if(senders[i].sender_id === sender_id)
             return senders[i];
     }
 
