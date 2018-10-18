@@ -38,7 +38,7 @@ function saveMessage({sender_id, timestamp, text}) {
         });
 
         sender.messages.sort(function(a,b) {
-            return a.timestamp - b.timestamp;
+            return b.timestamp - a.timestamp;
         });
 
         return true;
@@ -87,10 +87,10 @@ function addSender({sender_id, timestamp, text}) {
 function replaceOldest(sender, {timestamp, text}) {
 
     sender.messages.sort(function(a,b) {
-        return a.timestamp - b.timestamp;
+        return b.timestamp - a.timestamp;
     });
 
-    sender.messages[0] = {
+    sender.messages[MAX_LINES_PER_SENDER - 1] = {
         timestamp: timestamp,
         text: text
     }
