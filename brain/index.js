@@ -62,13 +62,13 @@ function getIntent(messages, replies) {
     if (latest_msg.length > 80)
         gut[0] += 2;
 
-    if (/^[a-z\.\á\ç\ã\õ\é\s]+(\s)?([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)(\s)?[a-z\.\á\ç\ã\õ\é\s]+/.test(latest_msg))
+    if (/^[a-z\.\á\ç\ã\õ\é\ó\s]+(\s)?([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)(\s)?[a-z\.\á\ç\ã\õ\é\ó\s]+/.test(latest_msg))
         gut[1] += 3;
 
     if (/^([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)/.test(latest_msg))
         gut[6] += 3;
 
-    if (/^[a-z\.\á\ç\ã\õ\é\s]+\s[0-9][0-9]?\s?(\,|\-|\;|\—)\s?[a-z\.\á\ç\ã\õ\é\s]+\s[0-9][0-9]?/.test(latest_msg))
+    if (/^[a-z\.\á\ç\ã\õ\é\ó\s]+\s[0-9][0-9]?\s?(\,|\-|\;|\—)\s?[a-z\.\á\ç\ã\õ\é\ó\s]+\s[0-9][0-9]?/.test(latest_msg))
         gut[1] += 3;
 
     if (/(final da partida)|(fim da partida)|(fim do jogo)|(terminou)$|(acabou)$|(terminado)$|(acabou o jogo)$/.test(latest_msg))
@@ -80,7 +80,7 @@ function getIntent(messages, replies) {
     if (/([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)\s(resultado final)|(resultado final)\s([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)/.test(latest_msg))
         gut[2]++;
 
-    if (/^[a-z\.\á\ç\ã\õ\é\s]+(\s)?([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)(\s)?[a-z\.\á\ç\ã\õ\é\s]+\s(resultado final)|^(resultado final)\s[a-z\.\á\ç\ã\õ\é\s]+(\s)?([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)(\s)?[a-z\.\á\ç\ã\õ\é\s]+/.test(latest_msg))
+    if (/^[a-z\.\á\ç\ã\õ\é\ó\s]+(\s)?([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)(\s)?[a-z\.\á\ç\ã\õ\é\ó\s]+\s(resultado final)|^(resultado final)\s[a-z\.\á\ç\ã\õ\é\ó\s]+(\s)?([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)(\s)?[a-z\.\á\ç\ã\õ\é\ó\s]+/.test(latest_msg))
         gut[2]++;
 
     let biggest_score = -1;
