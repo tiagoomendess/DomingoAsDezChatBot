@@ -14,6 +14,7 @@ function BotService() {
         Senders.saveMessage(message);
         let received = Senders.getMessages(message.sender_id);
         let sent = Senders.getReplies(message.sender_id);
+        console.log(message.sender_id);
 
         let intent = getIntent(received, sent);
 
