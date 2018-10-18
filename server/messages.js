@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const Bot = require('../bot');
+var Bot = require('../bot');
 
 function MessegesRouter() {
 
