@@ -50,7 +50,7 @@ function MessegesRouter() {
                     let message = {
                         sender_id : req.body.entry[i].messaging[j].sender.id,
                         timestamp : req.body.entry[i].messaging[j].timestamp,
-                        text : req.body.entry[i].messaging[j].message.text,
+                        text : req.body.entry[i].messaging[j].message.text.toLowerCase(),
                     };
 
                     Bot.ProcessMessage(message);

@@ -1,33 +1,23 @@
 const Senders = require("../data/senders");
 var request = require('request');
+const Brain = require('../brain');
 
 function BotService() {
 
     let service = {
         ProcessMessage,
+        SendAction,
+        SendMessage
     };
 
     //https://domingoasdez.com/api/games/live
     function ProcessMessage(message) {
 
-        console.log("Message Received! Processing...\n");
+        console.log("Message Received! Processing...");
         Senders.saveMessage(message);
-        let received = Senders.getMessages(message.sender_id);
-        let sent = Senders.getReplies(message.sender_id);
-        console.log(message.sender_id);
-
-        let intent = getIntent(received, sent);
-
-        switch (intent) {
-            case "tell_score":
-                console.log("[BOT]: User wants to report a match score!");
-                SendMessage(message.sender_id, "Recebido", "RESPONSE");
-                break;
-
-            default:
-                console.log("[BOT]: Don't know what user Wants!");
-                break;
-        }
+        let sender = Senders.getSender(message.sender_id);
+        let intent = Brain.getIntent(sender.messages, sender.replies);
+        Brain.processIntent(intent, sender);
 
     }
 
@@ -44,8 +34,6 @@ function BotService() {
         var headers = {
             'Content-Type': 'application/json'
         }
-
-        console.log('https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN);
 
         var options = {
             url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN,
@@ -64,9 +52,7 @@ function BotService() {
         }
 
         request(options, function (error, response, body) {
-            console.log('error:', error); // Print the error if one occurred
-            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-            console.log('body:', body); // Print the HTML for the Google homepage.
+            //yolo
         });
 
     }
@@ -77,14 +63,31 @@ function BotService() {
     */
     function SendAction(sender_id, action) {
 
-    }
+        var headers = {
+            'Content-Type': 'application/json'
+        }
 
-    function getIntent(messages_received, messages_sent) {
-        return "tell_score";
+        var options = {
+            url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN,
+            method: 'POST',
+            json: true,
+            headers: headers,
+            body: {
+                "recipient":{
+                    "id": sender_id
+                  },
+                  "sender_action": action
+            }
+        }
+
+        request(options, function (error, response, body) {
+            //yolo
+        });
     }
 
     return service;
 
 }
+
 
 module.exports = BotService;

@@ -6,11 +6,13 @@ let senders = [
         messages: [
             {
                 timestamp: 111111112,
-                text: "Mensagem"
+                text: "Mensagem",
+                intent: "unknown"
             },
             {
                 timestamp: 11111111,
-                text: "Mensagem"
+                text: "Mensagem",
+                intent: "unknown"
             },
 
         ],
@@ -40,7 +42,8 @@ function saveMessage({sender_id, timestamp, text}) {
 
         sender.messages.push({
             timestamp: timestamp,
-            text: text
+            text: text,
+            intent: "unknown"
         });
 
         sender.messages.sort(function(a,b) {
@@ -132,7 +135,8 @@ function replaceOldestMessage(sender, {timestamp, text}) {
 
     sender.messages[MAX_LINES_PER_SENDER - 1] = {
         timestamp: timestamp,
-        text: text
+        text: text,
+        intent: "unknown"
     }
 
     sender.messages.sort(function(a,b) {
@@ -162,4 +166,4 @@ function replaceOldestReply(sender, {timestamp, text}) {
 
 }
 
-module.exports = { saveMessage, saveReply, getMessages, getReplies, MAX_LINES_PER_SENDER }
+module.exports = { getSender, saveMessage, saveReply, getMessages, getReplies, MAX_LINES_PER_SENDER }
