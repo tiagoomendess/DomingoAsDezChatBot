@@ -115,7 +115,7 @@ function addSender({sender_id, timestamp, text}) {
         senders.push({
             sender_id : sender_id,
             messages : [],
-            replies = []
+            replies : []
         });
 
         return true;
