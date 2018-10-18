@@ -40,9 +40,14 @@ function BotService() {
         let timestamp = new Date().getTime();
         Senders.saveReply({ sender_id, timestamp, text });
 
+        var headers = {
+            'Content-Type': 'application/json'
+        }
+
         var options = {
             url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + process.env.PAGE_ACCESS_TOKEN,
             method: 'POST',
+            headers: headers,
             data: {
                 "messaging_type": message_type,
                 "recipient":{
