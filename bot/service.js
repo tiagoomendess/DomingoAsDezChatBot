@@ -197,10 +197,10 @@ function BotService() {
             let away_club = result[2].match(/[a-z\.\á\ç\ã\õ\é\ó\s]+$/g);
 
             let data = {
-                "home_club": home_club,
-                "home_score": home_score,
-                "away_club": away_club,
-                "away_score": away_score,
+                "home_club": home_club[0].trim(),
+                "home_score": home_score[0].trim(),
+                "away_club": away_club[0].trim(),
+                "away_score": away_score[0].trim(),
             }
 
             console.log(data);
