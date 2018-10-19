@@ -183,9 +183,8 @@ function BotService() {
 
     function tellScoreLiveMatch(sender) {
 
-        let data = {
-            "token": process.env.LARAVEL_WEBHOOK_TOKEN
-        };
+        let data = {};
+        let success = false;
 
         let last_msg = sender.messages[0].text;
 
@@ -201,12 +200,15 @@ function BotService() {
             let away_club = result[2].match(/[a-z\.\á\ç\ã\õ\é\ó\s]+$/g);
 
             data = {
+                "token": process.env.LARAVEL_WEBHOOK_TOKEN,
                 "home_club": home_club[0].trim(),
                 "home_score": home_score[0].trim(),
                 "away_club": away_club[0].trim(),
                 "away_score": away_score[0].trim(),
                 "match_finished": false,
             }
+
+            success = true;
 
         }
 
@@ -221,15 +223,33 @@ function BotService() {
             let away_club = result[2].match(/^[a-z\.\á\ç\ã\õ\é\ó\s]+/g);
 
             data = {
+                "token": process.env.LARAVEL_WEBHOOK_TOKEN,
                 "home_club": home_club[0].trim(),
                 "home_score": home_score[0].trim(),
                 "away_club": away_club[0].trim(),
                 "away_score": away_score[0].trim(),
                 "match_finished": false,
             }
+
+            success = true;
         }
 
-        console.log(data);
+        if (success) {
+
+            var options = {
+                url: 'https://domingoasdez.com/api/games/live/update_match',
+                method: 'POST',
+                json: true,
+                body: data
+            }
+    
+            request(options, function (error, response, body) {
+                console.log(body);
+            });
+
+        } else {
+            console.log("[BOT]: Unable to extract score or clubs!");
+        }
 
     }
 
