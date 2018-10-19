@@ -190,11 +190,11 @@ function BotService() {
         //Resultado: EquipaA 1-0 EquipaB
         if (result.length === 3) {
 
-            let home_score = result[1].match(/[0-9]+$/);
-            let away_score = result[2].match(/^[0-9]+/);
+            let home_score = result[1].match(/[0-9]+$/g);
+            let away_score = result[2].match(/^[0-9]+/g);
 
-            let home_club = result[1].match(/^[a-z\.\á\ç\ã\õ\é\ó\s]+/);
-            let away_club = result[2].match(/[a-z\.\á\ç\ã\õ\é\ó\s]+$/);
+            let home_club = result[1].match(/^[a-z\.\á\ç\ã\õ\é\ó\s]+/g);
+            let away_club = result[2].match(/[a-z\.\á\ç\ã\õ\é\ó\s]+$/g);
 
             let data = {
                 "home_club": home_club,
