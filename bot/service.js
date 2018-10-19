@@ -183,6 +183,10 @@ function BotService() {
 
     function tellScoreLiveMatch(sender) {
 
+        let data = {
+            "token": process.env.LARAVEL_WEBHOOK_TOKEN
+        };
+
         let last_msg = sender.messages[0].text;
 
         let result = last_msg.match(/^([a-z\.\á\ç\ã\õ\é\ó\s]+\s?[0-9][0-9]?)\s?[\-\—\.\a]\s?([0-9][0-9]?\s?[a-z\.\á\ç\ã\õ\é\ó\s]+)/);
@@ -196,8 +200,7 @@ function BotService() {
             let home_club = result[1].match(/^[a-z\.\á\ç\ã\õ\é\ó\s]+/g);
             let away_club = result[2].match(/[a-z\.\á\ç\ã\õ\é\ó\s]+$/g);
 
-            let data = {
-                "token": process.env.LARAVEL_WEBHOOK_TOKEN,
+            data = {
                 "home_club": home_club[0].trim(),
                 "home_score": home_score[0].trim(),
                 "away_club": away_club[0].trim(),
@@ -205,14 +208,28 @@ function BotService() {
                 "match_finished": false,
             }
 
-            console.log(data);
         }
 
         result = last_msg.match(/^([a-z\.\á\ç\ã\õ\é\ó\s]+\s[0-9][0-9]?)\s?[\,\-\;\—]\s?([a-z\.\á\ç\ã\õ\é\ó\s]+\s[0-9][0-9]?)/);
 
         if (result && result.length === 3) {
-            console.log(result);
+            
+            let home_score = result[1].match(/[0-9]+$/g);
+            let away_score = result[2].match(/[0-9]+$/g);
+
+            let home_club = result[1].match(/^[a-z\.\á\ç\ã\õ\é\ó\s]+/g);
+            let away_club = result[2].match(/^[a-z\.\á\ç\ã\õ\é\ó\s]+/g);
+
+            data = {
+                "home_club": home_club[0].trim(),
+                "home_score": home_score[0].trim(),
+                "away_club": away_club[0].trim(),
+                "away_score": away_score[0].trim(),
+                "match_finished": false,
+            }
         }
+
+        console.log(data);
 
     }
 
