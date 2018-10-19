@@ -311,12 +311,12 @@ function BotService() {
                 'Agradecemos a informação!',
                 'Ok, obrigado'
             ],
-            updated_score = [
+            updated_score : [
                 'Ok, obrigado. Vamos atualizar',
                 'Obrigado, vamos alterar',
                 'Vamos atualizar o resultado, obrigado!',
             ],
-            score_format_error = [
+            score_format_error : [
                 'Não percebi bem qual era o jogo em questão. Será que podia escrever de novo o resultado com o nome das duas equipas?',
                 'Não tenho a certeza se entendi. Para evitar confusões escreva de novo as duas equipas e o resultado de cada uma na mesma mensagem!',
                 'Qual é o jogo? Não encontro, escreva de novo o resultado por favor para não haver dúvidas em relação ao jogo.'
