@@ -201,10 +201,10 @@ function BotService() {
 
             data = {
                 "token": process.env.LARAVEL_WEBHOOK_TOKEN,
-                "home_club": home_club[0].trim(),
-                "home_score": home_score[0].trim(),
-                "away_club": away_club[0].trim(),
-                "away_score": away_score[0].trim(),
+                "home_club_name": home_club[0].trim(),
+                "home_club_score": home_score[0].trim(),
+                "away_club_name": away_club[0].trim(),
+                "away_club_score": away_score[0].trim(),
                 "match_finished": false,
             }
 
