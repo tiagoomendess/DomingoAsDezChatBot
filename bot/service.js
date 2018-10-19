@@ -323,11 +323,22 @@ function BotService() {
             ]
         };
 
-        if (!topic) {
-            return messages.dont_understand[Math.floor(Math.random() * messages.dont_understand.length)];
+        switch (topic) {
+
+            case "updated_score":
+                return messages.updated_score[Math.floor(Math.random() * messages.updated_score.length)];
+                
+            case "score_format_error":
+                return messages.score_format_error[Math.floor(Math.random() * messages.score_format_error.length)];
+
+            case "thanks":
+                return messages.thanks[Math.floor(Math.random() * messages.thanks.length)];
+
+            default:
+                return messages.dont_understand[Math.floor(Math.random() * messages.dont_understand.length)];
+                
         }
 
-        return messages.topic[Math.floor(Math.random() * messages.topic.length)];
     }
 
     return service;
