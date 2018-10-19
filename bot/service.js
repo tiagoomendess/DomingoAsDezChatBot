@@ -249,6 +249,7 @@ function BotService() {
             }
     
             request(options, function (error, response, body) {
+
                 if (body.success) {
 
                     setTimeout(function() {
@@ -262,11 +263,37 @@ function BotService() {
                     setTimeout(function() {
                         SendMessage(sender.sender_id, 'Obrigado! Vamos alterar o resultado.');
                     }, 8000);
+
+                } else {
+
+                    setTimeout(function() {
+                        SendAction(sender.sender_id, 'mark_seen');
+                    }, 2000);
+
+                    setTimeout(function() {
+                        SendAction(sender.sender_id, 'typing_on');
+                    }, 3000);
+
+                    setTimeout(function() {
+                    SendMessage(sender.sender_id, 'Não percebi bem qual era o jogo em questão. Será que podia escrever de novo o resultado com o nome das duas equipas?');
+                    }, 8000);
+
                 }
             });
 
         } else {
             console.log("[BOT]: Unable to extract score or clubs!");
+            setTimeout(function() {
+                SendAction(sender.sender_id, 'mark_seen');
+            }, 2000);
+
+            setTimeout(function() {
+                SendAction(sender.sender_id, 'typing_on');
+            }, 3000);
+
+            setTimeout(function() {
+            SendMessage(sender.sender_id, 'Não percebi. Por favor escreva o resultado com o nome das equipas!');
+            }, 8000);
         }
 
     }
