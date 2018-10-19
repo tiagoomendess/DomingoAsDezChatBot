@@ -249,7 +249,20 @@ function BotService() {
             }
     
             request(options, function (error, response, body) {
-                console.log(body);
+                if (body.success) {
+
+                    setTimeout(function() {
+                        SendAction(sender.sender_id, 'mark_seen');
+                    }, 2000);
+
+                    setTimeout(function() {
+                        SendAction(sender.sender_id, 'typing_on');
+                    }, 3000);
+
+                    setTimeout(function() {
+                        SendMessage(sender.sender_id, 'Obrigado! Vamos alterar o resultado.');
+                    }, 8000);
+                }
             });
 
         } else {
