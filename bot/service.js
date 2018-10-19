@@ -236,10 +236,15 @@ function BotService() {
 
         if (success) {
 
+            var headers = {
+                'Content-Type': 'application/json'
+            }
+
             var options = {
                 url: 'https://domingoasdez.com/api/games/live/update_match',
                 method: 'POST',
                 json: true,
+                headers: headers,
                 body: data
             }
     
