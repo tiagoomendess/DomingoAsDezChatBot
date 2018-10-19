@@ -88,24 +88,24 @@ function BotService() {
 
         switch (intent) {
             case "tell_score_live_match":
-                console.log("\t[BOT]: User wants to report a live match score!");
+                console.log("[BOT]: User wants to report a live match score!");
                 tellScoreLiveMatch(sender);
                 break;
     
             case "tell_score_finished_match":
-                console.log("\t[BOT]: User wants to report a finished match score!");
+                console.log("[BOT]: User wants to report a finished match score!");
                 break;
     
             case "confirm_score":
-                console.log("\t[BOT]: User wants to report a finished match score!");
+                console.log("[BOT]: User wants to report a finished match score!");
                 break;
     
             case "tell_match_is_over":
-                console.log("\t[BOT]: User wants to report a match is over!");
+                console.log("[BOT]: User wants to report a match is over!");
                 break;
     
             default:
-                console.log("\t[BOT]: Don't know what user Wants. Doing nothing!");
+                console.log("[BOT]: Don't know what user Wants. Doing nothing!");
                 break;
         }
     
@@ -197,15 +197,22 @@ function BotService() {
             let away_club = result[2].match(/[a-z\.\á\ç\ã\õ\é\ó\s]+$/g);
 
             let data = {
+                "token": process.env.LARAVEL_WEBHOOK_TOKEN,
                 "home_club": home_club[0].trim(),
                 "home_score": home_score[0].trim(),
                 "away_club": away_club[0].trim(),
                 "away_score": away_score[0].trim(),
+                "match_finished": false,
             }
 
             console.log(data);
         }
 
+        result = last_msg.match(/^([a-z\.\á\ç\ã\õ\é\ó\s]+\s[0-9][0-9]?)\s?[\,\-\;\—]\s?([a-z\.\á\ç\ã\õ\é\ó\s]+\s[0-9][0-9]?)/);
+
+        if (result.length === 3) {
+            console.log(result);
+        }
 
     }
 
