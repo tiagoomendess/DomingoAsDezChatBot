@@ -183,33 +183,17 @@ function BotService() {
 
     function tellScoreLiveMatch(sender) {
 
-        var options = {
-            url: 'https://domingoasdez.com/api/games/live',
-            method: 'GET',
+        let last_msg = sender.messages[0].text;
+
+        let result = last_msg.match(/^[a-z\.\á\ç\ã\õ\é\ó\s]+(\s)?([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)(\s)?[a-z\.\á\ç\ã\õ\é\ó\s]+/);
+
+        console.log("---> " + result);
+        //Resultado: EquipaA 1-0 EquipaB
+        if (result.length === 1) {
+            console.log("      Resultado: EquipaA 1-0 EquipaB");
         }
-    
-        request(options, function (error, response, body) {
-            
-            if (response.statusCode === 200) {
-    
-                let matches = JSON.parse(body);
-    
-                if (matches.data.length === 0) {
-                    console.log("\t[BOT]: No live games, doing nothing!");
-    
-                    setTimeout(function() {
-                        SendAction(sender.sender_id, 'mark_seen');
-                    }, 5000);
-                    
-                } else {
-                    console.log("\t[BOT]: There are games now!");
-                }
-    
-            }
-    
-            console.log("fim");
-    
-        });
+
+
     }
 
     return service;
