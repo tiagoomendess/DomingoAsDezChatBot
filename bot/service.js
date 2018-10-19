@@ -89,7 +89,21 @@ function BotService() {
         switch (intent) {
             case "tell_score_live_match":
                 console.log("[BOT]: User wants to report a live match score!");
-                tellScoreLiveMatch(sender);
+                var options = {
+                    url: 'https://domingoasdez.com/api/games/live',
+                    method: 'GET',
+                    json: true,
+                    body: data
+                }
+        
+                request(options, function (error, response, body) {
+                    if (body.data.length < 1) {
+                        console.log("[BOT]: No live games, doing nothing!");
+                        break;
+                    } else {
+                        tellScoreLiveMatch(sender);
+                    }
+                });
                 break;
     
             case "tell_score_finished_match":
@@ -315,6 +329,8 @@ function BotService() {
                 'Ok, obrigado. Vamos atualizar',
                 'Obrigado, vamos alterar',
                 'Vamos atualizar o resultado, obrigado!',
+                'Ok, vamos retificar. Obrigado',
+                ''
             ],
             score_format_error : [
                 'Não percebi bem qual era o jogo em questão. Será que podia escrever de novo o resultado com o nome das duas equipas?',
