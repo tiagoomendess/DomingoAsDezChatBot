@@ -261,7 +261,7 @@ function BotService() {
                     }, 3000);
 
                     setTimeout(function() {
-                        SendMessage(sender.sender_id, 'Obrigado! Vamos alterar o resultado.');
+                        SendMessage(sender.sender_id, getRandomMessage('updated_score'));
                     }, 8000);
 
                 } else {
@@ -275,7 +275,7 @@ function BotService() {
                     }, 3000);
 
                     setTimeout(function() {
-                    SendMessage(sender.sender_id, 'Não percebi bem qual era o jogo em questão. Será que podia escrever de novo o resultado com o nome das duas equipas?');
+                    SendMessage(sender.sender_id, getRandomMessage('score_format_error'));
                     }, 8000);
 
                 }
@@ -292,10 +292,42 @@ function BotService() {
             }, 3000);
 
             setTimeout(function() {
-            SendMessage(sender.sender_id, 'Não percebi. Por favor escreva o resultado com o nome das equipas!');
+            SendMessage(sender.sender_id, getRandomMessage('score_format_error'));
             }, 8000);
         }
 
+    }
+
+    function getRandomMessage(topic = undefined) {
+
+        let messages = {
+            dont_understand: [
+                'Desculpe, mas não percebi.',
+                'Não entendi',
+                'Não estou a perceber'
+            ],
+            thanks: [
+                'Obrigado!',
+                'Agradecemos a informação!',
+                'Ok, obrigado'
+            ],
+            updated_score = [
+                'Ok, obrigado. Vamos atualizar',
+                'Obrigado, vamos alterar',
+                'Vamos atualizar o resultado, obrigado!',
+            ],
+            score_format_error = [
+                'Não percebi bem qual era o jogo em questão. Será que podia escrever de novo o resultado com o nome das duas equipas?',
+                'Não tenho a certeza se entendi. Para evitar confusões escreva de novo as duas equipas e o resultado de cada uma na mesma mensagem!',
+                'Qual é o jogo? Não encontro, escreva de novo o resultado por favor para não haver dúvidas em relação ao jogo.'
+            ]
+        };
+
+        if (!topic) {
+            return messages.dont_understand[Math.floor(Math.random() * messages.dont_understand.length)];
+        }
+
+        return messages.topic[Math.floor(Math.random() * messages.topic.length)];
     }
 
     return service;
