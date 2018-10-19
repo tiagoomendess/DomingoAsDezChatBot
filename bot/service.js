@@ -188,7 +188,7 @@ function BotService() {
         let result = last_msg.match(/^([a-z\.\á\ç\ã\õ\é\ó\s]+\s?[0-9][0-9]?)\s?[\-\—\.\a]\s?([0-9][0-9]?\s?[a-z\.\á\ç\ã\õ\é\ó\s]+)/);
 
         //Resultado: EquipaA 1-0 EquipaB
-        if (result !== undefined && result.length === 3) {
+        if (result && result.length === 3) {
 
             let home_score = result[1].match(/[0-9]+$/g);
             let away_score = result[2].match(/^[0-9]+/g);
@@ -210,7 +210,7 @@ function BotService() {
 
         result = last_msg.match(/^([a-z\.\á\ç\ã\õ\é\ó\s]+\s[0-9][0-9]?)\s?[\,\-\;\—]\s?([a-z\.\á\ç\ã\õ\é\ó\s]+\s[0-9][0-9]?)/);
 
-        if (result !== undefined && result.length === 3) {
+        if (result && result.length === 3) {
             console.log(result);
         }
 
