@@ -185,11 +185,11 @@ function BotService() {
 
         let last_msg = sender.messages[0].text;
 
-        let result = last_msg.match(/^[a-z\.\á\ç\ã\õ\é\ó\s]+(\s)?([0-9][0-9]?(\s)?(\-|\—|\.|\a)(\s)?[0-9][0-9]?)(\s)?[a-z\.\á\ç\ã\õ\é\ó\s]+/);
+        let result = last_msg.match(/^([a-z\.\á\ç\ã\õ\é\ó\s]+\s?[0-9][0-9]?)\s?[\-\—\.\a]\s?([0-9][0-9]?\s?[a-z\.\á\ç\ã\õ\é\ó\s]+)/);
 
         console.log("---> " + result);
         //Resultado: EquipaA 1-0 EquipaB
-        if (result.length === 1) {
+        if (result.length >= 3) {
             console.log("      Resultado: EquipaA 1-0 EquipaB");
         }
 
