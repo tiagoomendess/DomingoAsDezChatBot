@@ -93,7 +93,6 @@ function BotService() {
                     url: 'https://domingoasdez.com/api/games/live',
                     method: 'GET',
                     json: true,
-                    body: data
                 }
         
                 request(options, function (error, response, body) {
