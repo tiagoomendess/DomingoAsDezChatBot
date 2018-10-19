@@ -99,7 +99,7 @@ function BotService() {
                 request(options, function (error, response, body) {
                     if (body.data.length < 1) {
                         console.log("[BOT]: No live games, doing nothing!");
-                        break;
+                        return;
                     } else {
                         tellScoreLiveMatch(sender);
                     }
