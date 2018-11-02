@@ -17,6 +17,24 @@ function ApiIndexRouter() {
       next();
     });
 
+    router.route('/phpmyadmin')
+    .get(function (req, res, next) {
+      res.status(200);
+      let message = "<html><head></head><body><h1>AHhahaha lol</h1></body></html>";
+      
+      res.send(message);
+      next();
+    });
+
+    router.route('/phpma')
+    .get(function (req, res, next) {
+      res.status(200);
+      let message = "<html><head></head><body><h1>A sério?</h1></body></html>";
+      
+      res.send(message);
+      next();
+    });
+
   return router;
   
 }
