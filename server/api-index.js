@@ -11,7 +11,9 @@ function ApiIndexRouter() {
   router.route('/')
     .get(function (req, res, next) {
       res.status(200);
-      res.send("Domingo às Dez Chat BOT \n I know what you are trying to do!");
+      let message = "<html><head></head><body><h1>Domingo às Dez Chat BOT</h1><small>I know what you are trying to do!</small></body></html>";
+      
+      res.send(message);
       next();
     });
 
